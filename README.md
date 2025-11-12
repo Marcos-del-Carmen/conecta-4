@@ -25,9 +25,5 @@ Esta versión está creada completamente con **Angular**, ofreciendo una experie
 
 ## 🧩 Capturas de pantalla
 
-> 📸 Agrega aquí tus imágenes o GIFs del juego  
-Ejemplo:
-
-```md
 ![Tablero de juego](./src/assets/img/extra/captura-tablero.png)
 ![Victoria entre jugadores](./src/assets/video/conecta-4.gif)
