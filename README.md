@@ -1,27 +1,33 @@
-# Conecta4
+# 🎯 Conecta 4 – ¡Desafía a tu rival!
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7.
+![Banner del juego](./src/assets/img/banner/banner-conecta-4.png)
+> El clásico juego de estrategia ahora en versión web, desarrollado con **Angular** ⚡  
+> Reta a tus amigos, conecta tus fichas y conviértete en el maestro del tablero 🧠🔥
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🕹️ ¿De qué trata?
 
-## Code scaffolding
+**Conecta 4** es un juego para **dos jugadores** donde el objetivo es conectar **cuatro fichas del mismo color** de forma horizontal, vertical o diagonal antes que tu oponente.  
+Esta versión está creada completamente con **Angular**, ofreciendo una experiencia fluida, interactiva y moderna.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## ✨ Características principales
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- 🎮 Modo **jugador vs jugador**  
+- 🔁 Boton de **reinicio** 
+- ⏱️ Contador de tiempo por turno  
+- 🎯 Detección automática de ganador  
+- 📱 Diseño **responsive** para distintos dispositivos  
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🧩 Capturas de pantalla
 
-## Running end-to-end tests
+> 📸 Agrega aquí tus imágenes o GIFs del juego  
+Ejemplo:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```md
+![Tablero de juego](./src/assets/img/extra/captura-tablero.png)
+![Victoria entre jugadores](./src/assets/video/conecta-4.gif)
