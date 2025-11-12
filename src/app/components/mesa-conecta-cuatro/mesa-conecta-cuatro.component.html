@@ -1,0 +1,42 @@
+
+
+<div class="d-flex justify-center align-items-center flex-direccion-column fondo">
+  <h1>Conecta cuatro</h1>
+  <div class="mesa mb-2">
+    @for (fila of celdas; track $index; let i = $index) {
+      @for (celda of fila; track $index; let j = $index) {
+        <div class="celda"(click)="numeroCelda(i, j)" 
+        [class.player-1]="celda == 1"
+        [class.player-2]="celda == 2"
+        [class.hover-player-1]="celda == 0 && turno === false && ganador == ''"
+        [class.hover-player-2]="celda == 0 && turno === true && ganador == ''"> </div>
+      }
+    }
+  </div>
+  <div class="d-flex justify-space-between w-50 p-1">
+    <div class="perfil-jugador">
+      <img src="assets/img/perfiles/rojo.png" alt="err" class="item1 img-ancho">
+      <p class="m-0 item2">{{player1.tag}}</p>
+      <p class="m-0 item3">Ganadas: {{player1.ganadas}}</p>
+    </div>
+    <div class="w-50">
+      <div>
+        <ngb-progressbar class="mb-3" type="success" [value]="tiempo" [striped]="true" />
+      </div>
+      <div class="d-flex justify-center">
+        @if (player1.ganadas > 0 || player2.ganadas > 0) {
+          <button class="btn btn-primary c-white me-2"
+            placement="bottom"
+            ngbTooltip="Reiniciar juego"
+            container="body" (click)="resetGame()"><i class="fa-solid fa-rotate-right"></i>
+          </button>
+        }
+      </div>
+    </div>
+    <div class="perfil-jugador">
+      <img src="assets/img/perfiles/mr.yellow.png" alt="rojo" class="item1 img-ancho">
+      <p class="m-0 item2">{{player2.tag}}</p>
+      <p class="m-0 item3">Ganadas: {{player2.ganadas}}</p>
+    </div>
+  </div>
+</div>

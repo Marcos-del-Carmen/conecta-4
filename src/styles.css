@@ -1,1 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --primary: #029ec5;
+  --danger: rgb(255, 60, 25);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.flex-direccion-column {
+  flex-direction: column;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.p-1 {
+  padding: 1rem;
+}
+
+.btn {
+  padding: .6rem;
+  border-radius: .5rem;
+  border: none;  
+}

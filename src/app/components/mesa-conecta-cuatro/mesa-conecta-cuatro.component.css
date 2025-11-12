@@ -1,0 +1,76 @@
+p, h1 {
+  color: #fff;
+}
+
+.fondo {
+  background: #000731;
+  height: 100vh;
+}
+
+.mesa {
+  background: #238a00;
+  border-radius: .5rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(7, minmax(2.5rem, 5rem));
+  grid-template-rows: repeat(6, minmax(2.5rem, 5rem));
+  padding: .5rem;
+}
+
+.celda {
+  border: 3px dashed #fff;
+  aspect-ratio: 1 / 1;
+  transition: all .4s;
+}
+
+.perfil-jugador {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: .5rem;
+}
+
+.item1 {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 2;
+}
+
+.player-1 {
+  background-color: red;
+  border-radius: 50%;
+}
+
+.player-2 {
+  background-color: yellow;
+  border-radius: 50%;
+}
+
+/* Hover dinámico según turno */
+.hover-player-1:hover {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
+.hover-player-2:hover {
+  background-color: rgba(255, 255, 0, 0.5);
+}
+
+/* 📱 Dispositivos pequeños */
+@media (max-width: 600px) {
+  .mesa {
+    gap: 0.4rem;
+    grid-template-columns: repeat(7, minmax(1.8rem, 3.5rem));
+    grid-template-rows: repeat(6, minmax(1.8rem, 3.5rem));
+  }
+}
+
+/* 📱 Muy pequeños (teléfonos compactos) */
+@media (max-width: 400px) {
+  .mesa {
+    gap: 0.3rem;
+    grid-template-columns: repeat(7, minmax(1.5rem, 2.8rem));
+    grid-template-rows: repeat(6, minmax(1.5rem, 2.8rem));
+  }
+}
+
+.img-ancho {
+  width: 90px;
+}
