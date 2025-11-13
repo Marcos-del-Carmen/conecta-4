@@ -122,88 +122,49 @@ export class MesaConectaCuatroComponent implements OnInit {
   
   }
   
-  compararDirecciones(fila: number, columna:number, numJugador: number) {
-    if(this.celdas[fila][columna] == numJugador) {
-      // derecha
-      if(this.estaEnRango(fila, columna+1) &&this.celdas[fila][columna+1] == numJugador){
-        if (this.estaEnRango(fila, columna+2) &&this.celdas[fila][columna+2] == numJugador) {
-          if (this.estaEnRango(fila, columna+3) &&this.celdas[fila][columna+3] == numJugador) {
-            this.contadorGanador();
-            return;
-          }
-        }
-      }
-  
-      // izquierda
-      if(this.estaEnRango(fila-1, columna) && this.celdas[fila][columna-1] == numJugador){
-        if (this.estaEnRango(fila-2, columna) && this.celdas[fila][columna-2] == numJugador) {
-          if (this.estaEnRango(fila-3, columna) && this.celdas[fila][columna-3] == numJugador) {
-            this.contadorGanador();
-            return;
-          }
-        }
-      }
-  
-      // arriba
-      if(this.estaEnRango(fila-1, columna) && this.celdas[fila-1][columna] == numJugador){
-        if (this.estaEnRango(fila-2, columna) && this.celdas[fila-2][columna] == numJugador) {
-          if (this.estaEnRango(fila-3, columna) && this.celdas[fila-3][columna] == numJugador) {
-            this.contadorGanador();
-            return;
-          }
-        }
-      }
-  
-      // abajo
-      if(this.estaEnRango(fila+1, columna) && this.celdas[fila+1][columna] == numJugador){
-        if (this.estaEnRango(fila+2, columna) && this.celdas[fila+2][columna] == numJugador) {
-          if (this.estaEnRango(fila+3, columna) && this.celdas[fila+3][columna] == numJugador) {
-            this.contadorGanador();
-            return;
-          }
-        }
-      }
-      
-      // arriba izquierda
-      if(this.estaEnRango(fila-1, columna-1) && this.celdas[fila-1][columna-1] == numJugador){
-        if (this.estaEnRango(fila-2, columna-2) && this.celdas[fila-2][columna-2] == numJugador) {
-          if (this.estaEnRango(fila-3, columna-3) && this.celdas[fila-3][columna-3] == numJugador) {
-            this.contadorGanador();
-            return;
-          }
-        }
-      }
-  
-      // arriba derecha
-      if(this.estaEnRango(fila-1, columna+1) && this.celdas[fila-1][columna+1] == numJugador){
-        if (this.estaEnRango(fila-2, columna+2) && this.celdas[fila-2][columna+2] == numJugador) {
-          if (this.estaEnRango(fila-3, columna+3) && this.celdas[fila-3][columna+3] == numJugador) {
-            this.contadorGanador();
-            return;
-          }
-        }
-      }
-  
-      // abajo izquieda  
-      if(this.estaEnRango(fila+1, columna-1) && this.celdas[fila+1][columna-1] == numJugador){
-        if (this.estaEnRango(fila+2, columna-2) && this.celdas[fila+2][columna-2] == numJugador) {
-          if (this.estaEnRango(fila+3, columna-3) && this.celdas[fila+3][columna-3] == numJugador) {
-            this.contadorGanador();
-            return;
-          }
-        }
-      }
-      
-      // abajo derecha
-      if(this.estaEnRango(fila+1, columna+1) && this.celdas[fila+1][columna+1] == numJugador){
-        if (this.estaEnRango(fila+2, columna+2) && this.celdas[fila+2][columna+2] == numJugador) {
-          if (this.estaEnRango(fila+3, columna+3) && this.celdas[fila+3][columna+3] == numJugador) {
-            this.contadorGanador();
-            return;
-          }
-        }
+  compararDirecciones(fila: number, columna: number, numJugador: number) {
+    if (this.celdas[fila][columna] !== numJugador) return;
+
+    // Definimos las 4 direcciones a verificar (cada una tiene dos sentidos)
+    const direcciones = [
+      { df: 0, dc: 1 },   // Horizontal (izquierda-derecha)
+      { df: 1, dc: 0 },   // Vertical (arriba-abajo)
+      { df: 1, dc: 1 },   // Diagonal \ (arriba-izq a abajo-der)
+      { df: 1, dc: -1 }   // Diagonal / (arriba-der a abajo-izq)
+    ];
+
+    // Verificamos cada dirección
+    for (const dir of direcciones) {
+      let contador = 1; // Empezamos en 1 (la ficha que acabamos de colocar)
+
+      // Contamos en dirección positiva (hacia adelante)
+      contador += this.contarEnDireccion(fila, columna, dir.df, dir.dc, numJugador);
+
+      // Contamos en dirección negativa (hacia atrás)
+      contador += this.contarEnDireccion(fila, columna, -dir.df, -dir.dc, numJugador);
+
+      // Si encontramos 4 o más, ¡hay ganador!
+      if (contador >= 4) {
+        this.contadorGanador();
+        return;
       }
     }
+  }
+
+  // Función auxiliar que cuenta cuántas fichas consecutivas hay en una dirección
+  contarEnDireccion(fila: number, columna: number, deltaFila: number, deltaColumna: number, numJugador: number): number {
+    let contador = 0;
+    let f = fila + deltaFila;
+    let c = columna + deltaColumna;
+
+    // Mientras esté en rango y sea del mismo jugador, seguimos contando
+    while (this.estaEnRango(f, c) && this.celdas[f][c] === numJugador) {
+      contador++;
+      f += deltaFila;
+      c += deltaColumna;
+    }
+
+    return contador;
   }
 
   estaEnRango(fila: number, columna: number): boolean {
